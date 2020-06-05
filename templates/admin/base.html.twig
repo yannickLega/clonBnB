@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>YanBnB - {% block title %}Welcome!{% endblock %}</title>
+
+        <meta name="Viewport" content="width=device-width, user-scalable=no">
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+        <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% include 'admin/partials/header.html.twig' %}
+
+        {% block body %}{% endblock %}
+
+        {% include 'admin/partials/footer.html.twig' %}
+
+        <script src="{{ asset('build/app.js') }}"></script>
+        <script src="{{ asset('build/runtime.js') }}"></script>
+        <script src="{{ asset('build/vendors~app.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

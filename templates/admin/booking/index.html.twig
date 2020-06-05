@@ -1,0 +1,38 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Administration des réservations{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1 class="my-5">Gestion des réservations</h1>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Booker</th>
+                    <th>Annonce</th>
+                    <th>Durée</th>
+                    <th>Prix</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in pagination.data %}
+                <tr>
+                    <td style="width: 20vw;">{{booking.createdAt | date('d/m/Y à H:i')}}</td>
+                    <td style="width: 15vw;"><img src="{{booking.booker.picture}}" alt="Avatar de {{booking.booker.fullName}}" class="avatar avatar-mini ml-2 mr-2">{{booking.booker.fullName}}</td>
+                    <td style="width: 30vw;">{{booking.ad.title}}</td>
+                    <td style="width: 15vw;">{{booking.duration}} nuits</td>
+                    <td style="width: 10vw;">{{booking.amount}} &euro;</td>
+                    <td style="width: 10vw;">
+                        <a href="{{ path('admin_booking_edit', {'id': booking.id}) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                        <a href="{{ path('admin_booking_delete', {'id': booking.id}) }}" class="btn btn-danger" onclick="return confirm(`Etes vous sur de vouloir supprimer la réservation de {{booking.booker.fullName}} ?`)"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {{ pagination.display() }}
+    </div>
+{% endblock %}
+
